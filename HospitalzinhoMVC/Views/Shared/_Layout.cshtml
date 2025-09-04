@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HospitalzinhoMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/consultaHopistal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HospitalzinhoMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    @{
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    }
+
+    <header>
+        <a asp-controller="Home" asp-action="Index" title="Voltar para a página inicial">
+            <img src="https://placehold.co/200x60/0056b3/white?text=LOGO" alt="Logotipo do Sistema">
+        </a>
+
+        <nav>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index" class="@(currentController == "Home" && currentAction == "Index" ? "active" : "")">Consulta de Hospitais</a>
+                </li>
+
+                <li>
+                    <a asp-controller="Home" asp-action="Privacy" class="@(currentController == "Home" && currentAction == "Privacy" ? "active" : "")">Privacy</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p><strong>Secretaria Municipal de Saúde de Marília</strong></p>
+            <p>Endereço: Av. Sampaio Vidal, 218-A - Centro, Marília - SP</p>
+            <p>Telefone para contato: (14) 3402-6500 | E-mail: saude@marilia.sp.gov.br</p>
+            <p>&copy; 2025 - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
