@@ -1,5 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Hospitalzinho.Entidades
 {
@@ -16,8 +20,8 @@ namespace Hospitalzinho.Entidades
         public virtual DateTime DataAbertura { get; set; }
         public virtual DateTime UltimaAtualizacao { get; set; }
 
-        public virtual IList<PacienteConsulta> Consultas { get; set; } = new List<PacienteConsulta>();
-        public virtual IList<PacienteInternacao> Internacoes { get; set; } = new List<PacienteInternacao>();
-        public virtual IList<PacienteExame> Exames { get; set; } = new List<PacienteExame>();
+        public virtual IList<PacienteConsulta> Consultas { get; set; } = new List<Consulta>();
+        public virtual IList<PacienteInternacao> Internacoes { get; set; } = new List<Internacao>();
+        public virtual IList<PacienteExame> Exames { get; set; } = new List<Exame>();
     }
 }
