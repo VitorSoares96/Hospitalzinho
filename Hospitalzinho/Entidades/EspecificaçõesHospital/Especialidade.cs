@@ -1,8 +1,12 @@
-﻿public class Especialidade
+﻿namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
-    public int Id { get; set; }
-    public string Nome { get; set; } = null!;
+    public class Especialidade
+    {
+        public virtual int Id { get; set; }
+        public virtual string Nome { get; set; } = null!;
 
-    // Relacionamentos
-    public List<ProfissionalSaude> Profissionais { get; set; } = new();
+        // Relacionamentos
+        public virtual List<ProfissionalSaude> Profissionais { get; set; } = new();
+    }
+
 }

@@ -9,7 +9,7 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual long Id { get; set; }
         public virtual Paciente Paciente { get; set; }
         public virtual DateTime DataConsulta { get; set; }
-        public virtual Medico MedicoResponsavel { get; set; }
+        public virtual ProfissionalSaude ProfResponsavel { get; set; }
         public virtual string Observacoes { get; set; }
 
         public virtual Sala Sala { get; set; }

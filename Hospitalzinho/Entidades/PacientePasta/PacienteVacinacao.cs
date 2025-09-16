@@ -5,13 +5,13 @@ namespace Hospitalzinho.Entidades.PacientePasta
 {
     public class PacienteVacinacao
     {
-        public int Id { get; set; } // Identificador único
-        public int PacienteId { get; set; } // FK do paciente
-        public int VacinaId { get; set; } // FK da vacina aplicada
-        public Vacina Vacina { get; set; } // Referência à vacina aplicada
-        public ProfissionalSaude ProfResponsavel { get; set; } // Profissional que aplicou a vacina
-        public DateTime DataAplicacao { get; set; } // Data em que foi aplicada
-        public int DoseNumero { get; set; } // Ex: 1, 2, reforço
-        public string Observacoes { get; set; } // Observações médicas, se houver
+        public virtual long Id { get; set; }
+        public virtual PacienteProntuario Prontuario { get; set; }
+        public virtual Vacina Vacina { get; set; }
+        public virtual ProfissionalSaude ProfResponsavel { get; set; }
+        public virtual DateTime DataAplicacao { get; set; }
+        public virtual int DoseNumero { get; set; }
+        public virtual string Observacoes { get; set; }
+
     }
 }

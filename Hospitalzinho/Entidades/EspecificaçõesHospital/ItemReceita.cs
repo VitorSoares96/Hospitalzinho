@@ -1,5 +1,4 @@
-﻿using Hospitalzinho.Entidades.EspecificaçõesHospital;
-using Hospitalzinho.Entidades.Medicacao;
+﻿using Hospitalzinho.Entidades.Medicacao;
 
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {

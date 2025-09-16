@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospitalzinho.Entidades.EspecificaçõesHospital;
+using System;
 
 namespace Hospitalzinho.Entidades.PacientePasta
 {
@@ -10,7 +11,7 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual DateTime? DataAlta { get; set; } // Pode ser nulo enquanto o paciente estiver internado
         public virtual Quarto Quarto { get; set; } // Ex: "101A"
         public virtual string Motivo { get; set; }
-        public virtual Medico MedicoResponsavel { get; set; }
+        public virtual ProfissionalSaude ProfResponsavel { get; set; }
         public virtual string Observacoes { get; set; }
     }
 }

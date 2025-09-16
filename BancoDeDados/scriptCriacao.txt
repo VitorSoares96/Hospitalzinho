@@ -1,0 +1,357 @@
+-- ============================================
+-- SEQUENCES
+-- ============================================
+CREATE SEQUENCE convenio_seq;
+CREATE SEQUENCE especialidade_seq;
+CREATE SEQUENCE profissional_saude_seq;
+CREATE SEQUENCE paciente_seq;
+CREATE SEQUENCE paciente_prontuario_seq;
+CREATE SEQUENCE paciente_contato_seq;
+CREATE SEQUENCE paciente_endereco_seq;
+CREATE SEQUENCE alergia_seq;
+CREATE SEQUENCE doenca_cronica_modelo_seq;
+CREATE SEQUENCE paciente_doenca_cronica_seq;
+CREATE SEQUENCE medicamento_modelo_seq;
+CREATE SEQUENCE medicamento_seq;
+CREATE SEQUENCE receita_seq;
+CREATE SEQUENCE item_receita_seq;
+CREATE SEQUENCE exame_seq;
+CREATE SEQUENCE paciente_exame_seq;
+CREATE SEQUENCE ala_seq;
+CREATE SEQUENCE quarto_seq;
+CREATE SEQUENCE sala_seq;
+CREATE SEQUENCE paciente_consulta_seq;
+CREATE SEQUENCE paciente_internacao_seq;
+CREATE SEQUENCE paciente_cirurgia_seq;
+CREATE SEQUENCE vacina_modelo_seq;
+CREATE SEQUENCE vacina_seq;
+CREATE SEQUENCE paciente_vacinacao_seq;
+CREATE SEQUENCE paciente_medicacao_seq;
+
+-- ============================================
+-- ENUMS
+-- ============================================
+CREATE TYPE sexo_paciente AS ENUM ('Masculino', 'Feminino', 'Outro');
+CREATE TYPE raca_paciente AS ENUM ('Branca', 'Preta', 'Parda', 'Amarela', 'Indigena');
+CREATE TYPE escolaridade_paciente AS ENUM (
+    'Analfabeto', 'FundamentalIncompleto', 'FundamentalCompleto',
+    'MedioIncompleto', 'MedioCompleto', 'SuperiorIncompleto', 'SuperiorCompleto',
+    'PosGraduacao', 'NaoSeAplica'
+);
+CREATE TYPE tipo_sanguineo AS ENUM ('A_Pos', 'A_Neg', 'B_Pos', 'B_Neg', 'AB_Pos', 'AB_Neg', 'O_Pos', 'O_Neg');
+CREATE TYPE tipo_quarto AS ENUM ('Enfermaria', 'UTI', 'Isolamento', 'SemiIntensivo');
+CREATE TYPE tipo_alergia AS ENUM ('Alimentar', 'Medicamentosa', 'Ambiental', 'Outro');
+
+-- ============================================
+-- CONVENIO
+-- ============================================
+CREATE TABLE convenio (
+    id INT PRIMARY KEY DEFAULT nextval('convenio_seq'),
+    nome VARCHAR(255) NOT NULL,
+    cnpj VARCHAR(20),
+    telefone VARCHAR(50),
+    endereco TEXT
+);
+
+-- ============================================
+-- ESPECIALIDADE
+-- ============================================
+CREATE TABLE especialidade (
+    id INT PRIMARY KEY DEFAULT nextval('especialidade_seq'),
+    nome VARCHAR(255) NOT NULL
+);
+
+-- ============================================
+-- PROFISSIONAL DE SAUDE
+-- ============================================
+CREATE TABLE profissional_saude (
+    id INT PRIMARY KEY DEFAULT nextval('profissional_saude_seq'),
+    nome VARCHAR(255) NOT NULL,
+    registro_profissional VARCHAR(50),
+    especialidade_id INT NOT NULL REFERENCES especialidade(id) ON DELETE RESTRICT
+);
+
+-- ============================================
+-- PACIENTE
+-- ============================================
+CREATE TABLE paciente (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_seq'),
+    nome VARCHAR(255) NOT NULL,
+    cns VARCHAR(20) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    nome_pai VARCHAR(255),
+    nome_mae VARCHAR(255),
+    cpf_pai VARCHAR(14),
+    cpf_mae VARCHAR(14),
+    atividade BOOLEAN NOT NULL DEFAULT TRUE,
+    sexo sexo_paciente NOT NULL,
+    nacionalidade VARCHAR(100),
+    raca raca_paciente NOT NULL,
+    naturalidade VARCHAR(100),
+    escolaridade escolaridade_paciente NOT NULL,
+    data_cadastro TIMESTAMP NOT NULL DEFAULT NOW(),
+    data_atualizacao TIMESTAMP NOT NULL DEFAULT NOW(),
+    convenio_id INT REFERENCES convenio(id) ON DELETE SET NULL
+);
+
+-- ============================================
+-- PACIENTE PRONTUARIO
+-- ============================================
+CREATE TABLE paciente_prontuario (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_prontuario_seq'),
+    paciente_id BIGINT NOT NULL UNIQUE REFERENCES paciente(id) ON DELETE CASCADE,
+    tipo_sangue tipo_sanguineo NOT NULL,
+    data_abertura TIMESTAMP NOT NULL DEFAULT NOW(),
+    ultima_atualizacao TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+-- ============================================
+-- PACIENTE CONTATOS
+-- ============================================
+CREATE TABLE paciente_contato (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_contato_seq'),
+    paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE CASCADE,
+    telefone_residencial VARCHAR(20),
+    telefone_celular VARCHAR(20),
+    email VARCHAR(255)
+);
+
+-- ============================================
+-- PACIENTE ENDERECO
+-- ============================================
+CREATE TABLE paciente_endereco (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_endereco_seq'),
+    paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE CASCADE,
+    logradouro VARCHAR(255),
+    numero VARCHAR(20),
+    complemento VARCHAR(255),
+    bairro VARCHAR(100),
+    cidade VARCHAR(100),
+    estado VARCHAR(50),
+    cep VARCHAR(20)
+);
+
+-- ============================================
+-- ALERGIA
+-- ============================================
+CREATE TABLE alergia (
+    id BIGINT PRIMARY KEY DEFAULT nextval('alergia_seq'),
+    nome VARCHAR(255) NOT NULL,
+    tipo tipo_alergia NOT NULL
+);
+
+-- ============================================
+-- DOENCA CRONICA MODELO
+-- ============================================
+CREATE TABLE doenca_cronica_modelo (
+    id BIGINT PRIMARY KEY DEFAULT nextval('doenca_cronica_modelo_seq'),
+    nome VARCHAR(255) NOT NULL,
+    cid VARCHAR(10),
+    descricao TEXT
+);
+
+-- ============================================
+-- PACIENTE DOENCA CRONICA
+-- ============================================
+CREATE TABLE paciente_doenca_cronica (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_doenca_cronica_seq'),
+    prontuario_id BIGINT NOT NULL REFERENCES paciente_prontuario(id) ON DELETE CASCADE,
+    modelo_id BIGINT NOT NULL REFERENCES doenca_cronica_modelo(id) ON DELETE RESTRICT,
+    data_diagnostico DATE NOT NULL,
+    estagio VARCHAR(50),
+    observacoes TEXT,
+    em_tratamento BOOLEAN DEFAULT TRUE
+);
+
+-- ============================================
+-- MEDICAMENTO MODELO
+-- ============================================
+CREATE TABLE medicamento_modelo (
+    id BIGINT PRIMARY KEY DEFAULT nextval('medicamento_modelo_seq'),
+    nome VARCHAR(255) NOT NULL,
+    principio_ativo VARCHAR(255),
+    fabricante VARCHAR(255),
+    forma_farmaceutica VARCHAR(50),
+    dosagem VARCHAR(50),
+    indicacoes TEXT,
+    contra_indicacoes TEXT
+);
+
+-- ============================================
+-- MEDICAMENTO
+-- ============================================
+CREATE TABLE medicamento (
+    id BIGINT PRIMARY KEY DEFAULT nextval('medicamento_seq'),
+    modelo_id BIGINT NOT NULL REFERENCES medicamento_modelo(id) ON DELETE RESTRICT,
+    lote VARCHAR(50) NOT NULL,
+    data_fabricacao DATE,
+    data_validade DATE,
+    quantidade_disponivel INT DEFAULT 0
+);
+
+-- ============================================
+-- RECEITA
+-- ============================================
+CREATE TABLE receita (
+    id BIGINT PRIMARY KEY DEFAULT nextval('receita_seq'),
+    paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE CASCADE,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT,
+    data TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+-- ============================================
+-- ITEM RECEITA
+-- ============================================
+CREATE TABLE item_receita (
+    id BIGINT PRIMARY KEY DEFAULT nextval('item_receita_seq'),
+    receita_id BIGINT NOT NULL REFERENCES receita(id) ON DELETE CASCADE,
+    modelo_id BIGINT NOT NULL REFERENCES medicamento_modelo(id) ON DELETE RESTRICT,
+    quantidade INT NOT NULL,
+    posologia TEXT
+);
+
+-- ============================================
+-- EXAME
+-- ============================================
+CREATE TABLE exame (
+    id BIGINT PRIMARY KEY DEFAULT nextval('exame_seq'),
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    laboratorio_padrao VARCHAR(255)
+);
+
+-- ============================================
+-- PACIENTE EXAME
+-- ============================================
+CREATE TABLE paciente_exame (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_exame_seq'),
+    prontuario_id BIGINT NOT NULL REFERENCES paciente_prontuario(id) ON DELETE CASCADE,
+    exame_id BIGINT NOT NULL REFERENCES exame(id) ON DELETE RESTRICT,
+    data_exame TIMESTAMP NOT NULL,
+    laboratorio VARCHAR(255),
+    resultados TEXT,
+    observacoes TEXT,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT
+);
+
+-- ============================================
+-- ALA
+-- ============================================
+CREATE TABLE ala (
+    id BIGINT PRIMARY KEY DEFAULT nextval('ala_seq'),
+    nome VARCHAR(255) NOT NULL
+);
+
+-- ============================================
+-- QUARTO
+-- ============================================
+CREATE TABLE quarto (
+    id BIGINT PRIMARY KEY DEFAULT nextval('quarto_seq'),
+    numero VARCHAR(20) NOT NULL,
+    ala_id BIGINT NOT NULL REFERENCES ala(id) ON DELETE RESTRICT,
+    tipo tipo_quarto NOT NULL,
+    capacidade INT NOT NULL
+);
+
+-- ============================================
+-- SALA
+-- ============================================
+CREATE TABLE sala (
+    id BIGINT PRIMARY KEY DEFAULT nextval('sala_seq'),
+    numero VARCHAR(20) NOT NULL,
+    ala_id BIGINT NOT NULL REFERENCES ala(id) ON DELETE RESTRICT,
+    tipo VARCHAR(50)
+);
+
+-- ============================================
+-- PACIENTE CONSULTA
+-- ============================================
+CREATE TABLE paciente_consulta (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_consulta_seq'),
+    paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE CASCADE,
+    data_consulta TIMESTAMP NOT NULL,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT,
+    sala_id BIGINT REFERENCES sala(id),
+    observacoes TEXT
+);
+
+-- ============================================
+-- PACIENTE INTERNACAO
+-- ============================================
+CREATE TABLE paciente_internacao (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_internacao_seq'),
+    paciente_id BIGINT NOT NULL REFERENCES paciente(id) ON DELETE CASCADE,
+    data_internacao TIMESTAMP NOT NULL,
+    data_alta TIMESTAMP,
+    quarto_id BIGINT NOT NULL REFERENCES quarto(id),
+    motivo TEXT,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT,
+    observacoes TEXT
+);
+
+-- ============================================
+-- PACIENTE CIRURGIA
+-- ============================================
+CREATE TABLE paciente_cirurgia (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_cirurgia_seq'),
+    prontuario_id BIGINT NOT NULL REFERENCES paciente_prontuario(id) ON DELETE CASCADE,
+    nome VARCHAR(255),
+    data_cirurgia TIMESTAMP NOT NULL,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT,
+    hospital VARCHAR(255),
+    observacoes TEXT
+);
+
+-- ============================================
+-- VACINA MODELO
+-- ============================================
+CREATE TABLE vacina_modelo (
+    id INT PRIMARY KEY DEFAULT nextval('vacina_modelo_seq'),
+    nome VARCHAR(255),
+    fabricante VARCHAR(255),
+    tipo VARCHAR(50),
+    indicacao TEXT,
+    numero_doses INT,
+    intervalo_entre_doses INTERVAL
+);
+
+-- ============================================
+-- VACINA
+-- ============================================
+CREATE TABLE vacina (
+    id INT PRIMARY KEY DEFAULT nextval('vacina_seq'),
+    lote VARCHAR(50),
+    data_producao DATE,
+    data_validade DATE,
+    quantidade_disponivel INT,
+    vacina_modelo_id INT NOT NULL REFERENCES vacina_modelo(id) ON DELETE RESTRICT
+);
+
+-- ============================================
+-- PACIENTE VACINACAO
+-- ============================================
+CREATE TABLE paciente_vacinacao (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_vacinacao_seq'),
+    prontuario_id BIGINT NOT NULL REFERENCES paciente_prontuario(id) ON DELETE CASCADE,
+    vacina_id INT NOT NULL REFERENCES vacina(id) ON DELETE RESTRICT,
+    profissional_id INT NOT NULL REFERENCES profissional_saude(id) ON DELETE RESTRICT,
+    data_aplicacao TIMESTAMP NOT NULL,
+    dose_numero INT,
+    observacoes TEXT
+);
+
+-- ============================================
+-- PACIENTE MEDICACAO
+-- ============================================
+CREATE TABLE paciente_medicacao (
+    id BIGINT PRIMARY KEY DEFAULT nextval('paciente_medicacao_seq'),
+    prontuario_id BIGINT NOT NULL REFERENCES paciente_prontuario(id) ON DELETE CASCADE,
+    modelo_id BIGINT NOT NULL REFERENCES medicamento_modelo(id) ON DELETE RESTRICT,
+    dosagem_prescrita VARCHAR(100),
+    frequencia VARCHAR(50),
+    via_administracao VARCHAR(50),
+    observacoes TEXT,
+    data_inicio TIMESTAMP NOT NULL,
+    data_fim TIMESTAMP
+);
