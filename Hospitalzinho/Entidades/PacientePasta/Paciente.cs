@@ -25,6 +25,7 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual IList<PacienteEndereco> Enderecos { get; set; } = new List<PacienteEndereco>();
         public virtual DateTime DataCadastro { get; set; }
         public virtual DateTime DataAtualizacao { get; set; }
+        public virtual Convenio ConvenioId { get; set; }
 
         public virtual PacienteProntuario Prontuario { get; set; }
     }

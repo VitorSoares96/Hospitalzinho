@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospitalzinho.Entidades.EspecificaçõesHospital;
+using System;
 using System.Collections.Generic;
 
 namespace Hospitalzinho.Entidades.PacientePasta
