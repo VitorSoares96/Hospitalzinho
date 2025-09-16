@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Mapeamento\Paciente.hbm.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.5.3" />
     <PackageReference Include="Npgsql" Version="9.0.3" />
   </ItemGroup>

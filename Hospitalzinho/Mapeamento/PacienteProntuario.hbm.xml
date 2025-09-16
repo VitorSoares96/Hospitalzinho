@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.PacientePasta">
+	<class name="PacienteProntuario" table="paciente_prontuario">
+
+		<!-- ID com sequence -->
+		<id name="Id" column="id" type="Int64">
+			<generator class="sequence">
+				<param name="sequence">paciente_prontuario_seq</param>
+			</generator>
+		</id>
+
+		<!-- Relacionamento 1:1 com Paciente -->
+		<one-to-one name="Paciente" class="Paciente" property-ref="Prontuario" cascade="none" />
+
+		<!-- Colunas simples -->
+		<property name="TipoSangue" column="tipo_sangue" type="Hospitalzinho.Enum.TipoSanguineo" not-null="true" />
+		<property name="DataAbertura" column="data_abertura" not-null="true" />
+		<property name="UltimaAtualizacao" column="ultima_atualizacao" not-null="true" />
+
+		<!-- Relacionamentos 1:N -->
+		<bag name="Alergias" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="Alergia"/>
+		</bag>
+
+		<bag name="DoencasCronicas" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="PacienteDoencaCronica"/>
+		</bag>
+
+		<bag name="MedicacoesContinuas" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="PacienteMedicacao"/>
+		</bag>
+
+		<bag name="Cirurgias" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="PacienteCirurgia"/>
+		</bag>
+
+		<bag name="Vacinacoes" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="PacienteVacinacao"/>
+		</bag>
+
+		<bag name="Consultas" cascade="all-delete-orphan" inverse="true">
+			<key column="paciente_id"/>
+			<one-to-many class="PacienteConsulta"/>
+		</bag>
+
+		<bag name="Internacoes" cascade="all-delete-orphan" inverse="true">
+			<key column="paciente_id"/>
+			<one-to-many class="PacienteInternacao"/>
+		</bag>
+
+		<bag name="Exames" cascade="all-delete-orphan" inverse="true">
+			<key column="prontuario_id"/>
+			<one-to-many class="PacienteExame"/>
+		</bag>
+
+	</class>
+</hibernate-mapping>
