@@ -13,5 +13,6 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual string Motivo { get; set; }
         public virtual ProfissionalSaude ProfResponsavel { get; set; }
         public virtual string Observacoes { get; set; }
+        public virtual Hospital Hospital { get; set; }
     }
 }

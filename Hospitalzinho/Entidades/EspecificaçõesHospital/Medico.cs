@@ -17,4 +17,5 @@ public class ProfissionalSaude
     public virtual List<PacienteInternacao> Internacoes { get; set; } = new();
     public virtual List<PacienteVacinacao> VacinacoesAdministradas { get; set; } = new();
     public virtual List<Receita> ReceitasPrescritas { get; set; } = new();
+    public virtual Hospital Hospital { get; set; }
 }

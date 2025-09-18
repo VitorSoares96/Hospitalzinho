@@ -14,5 +14,6 @@ namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 
         // Relacionamentos
         public virtual IList<ItemReceita> Itens { get; set; } = new List<ItemReceita>();
+        public Hospital Hospital { get; set; }
     }
 }

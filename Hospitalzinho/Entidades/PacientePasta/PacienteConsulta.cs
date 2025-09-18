@@ -11,8 +11,8 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual DateTime DataConsulta { get; set; }
         public virtual ProfissionalSaude ProfResponsavel { get; set; }
         public virtual string Observacoes { get; set; }
-
         public virtual Sala Sala { get; set; }
         public virtual IList<PacienteExame> Exames { get; set; } = new List<PacienteExame>();
+        public virtual Hospital Hospital { get; set; }
     }
 }
