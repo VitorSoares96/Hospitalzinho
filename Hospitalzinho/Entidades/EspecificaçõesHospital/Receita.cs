@@ -1,4 +1,5 @@
 ﻿using Hospitalzinho.Entidades.PacientePasta;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
@@ -9,11 +10,13 @@ namespace Hospitalzinho.Entidades.EspecificaçõesHospital
         public virtual DateTime Data { get; set; }
 
         // FK - Paciente e Profissional que prescreveu
+        [Required]
         public virtual Paciente Paciente { get; set; }
+        [Required]
         public virtual ProfissionalSaude Profissional { get; set; }
 
         // Relacionamentos
         public virtual IList<ItemReceita> Itens { get; set; } = new List<ItemReceita>();
-        public Hospital Hospital { get; set; }
+        public HospitalUnidade Hospital { get; set; }
     }
 }

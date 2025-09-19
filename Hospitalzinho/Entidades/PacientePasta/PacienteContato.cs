@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Hospitalzinho.Entidades.PacientePasta
     public class PacienteContato
     {
         public virtual long Id { get; set; }
+        [Required]
         public virtual Paciente Paciente { get; set; }
         public virtual string TelefoneResidencial { get; set; }
         public virtual string TelefoneCelular { get; set; }

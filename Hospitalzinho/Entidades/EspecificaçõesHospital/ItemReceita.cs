@@ -1,4 +1,5 @@
 ﻿using Hospitalzinho.Entidades.Medicacao;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
@@ -9,6 +10,7 @@ namespace Hospitalzinho.Entidades.EspecificaçõesHospital
         public virtual string Posologia { get; set; } // Ex: "1 comprimido a cada 12h"
 
         // FK - Receita
+        [Required]
         public virtual Receita Receita { get; set; }
 
         // FK - MedicamentoModelo (não lote específico)

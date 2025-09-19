@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Hospitalzinho.Enum;
 
 namespace Hospitalzinho.Entidades.PacientePasta
@@ -7,7 +8,9 @@ namespace Hospitalzinho.Entidades.PacientePasta
     public class Paciente
     {
         public virtual long Id { get; set; }
+        [Required]
         public virtual string Nome { get; set; }
+        [Required]
         public virtual string CNS { get; set; } // Cartão Nacional de Saúde
         public virtual string Cpf { get; set; }
         public virtual DateTime DataNascimento { get; set; }
@@ -15,7 +18,7 @@ namespace Hospitalzinho.Entidades.PacientePasta
         public virtual string NomeMae { get; set; }
         public virtual string CpfPai { get; set; }
         public virtual string CpfMae { get; set; }
-        public virtual bool Atividade { get; set; }
+        public virtual bool Ativo { get; set; }
         public virtual SexoPaciente Sexo { get; set; }
         public virtual string Nacionalidade { get; set; }
         public virtual RacaPaciente Raca { get; set; }

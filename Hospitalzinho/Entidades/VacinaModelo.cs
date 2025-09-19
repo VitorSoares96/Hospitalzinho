@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades
 {
     public class VacinaModelo
     {
         public int Id { get; set; } // Identificador único do modelo
+        [Required]
         public string Nome { get; set; } // Nome da vacina, ex: "Covid-19 Pfizer"
         public string Fabricante { get; set; } // Ex: "Pfizer"
         public string Tipo { get; set; } // Ex: "RNA mensageiro", "Inativada"

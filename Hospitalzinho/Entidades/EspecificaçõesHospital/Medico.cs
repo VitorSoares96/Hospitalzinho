@@ -1,14 +1,16 @@
 ﻿using Hospitalzinho.Entidades.PacientePasta;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital;
 public class ProfissionalSaude
 {
     public virtual int Id { get; set; }
     public virtual string Nome { get; set; } = null!;
+    [Required]
     public virtual string? RegistroProfissional { get; set; } // CRM, COREN etc.
 
     // FK
-    public virtual int EspecialidadeId { get; set; }
+    [Required]
     public virtual Especialidade Especialidade { get; set; } = null!;
 
     // Relacionamentos
@@ -17,5 +19,5 @@ public class ProfissionalSaude
     public virtual List<PacienteInternacao> Internacoes { get; set; } = new();
     public virtual List<PacienteVacinacao> VacinacoesAdministradas { get; set; } = new();
     public virtual List<Receita> ReceitasPrescritas { get; set; } = new();
-    public virtual Hospital Hospital { get; set; }
+    public virtual HospitalUnidade Hospital { get; set; }
 }

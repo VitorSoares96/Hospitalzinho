@@ -1,5 +1,6 @@
 ﻿using Hospitalzinho.Entidades.EspecificaçõesHospital;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades
 {
@@ -8,6 +9,7 @@ namespace Hospitalzinho.Entidades
         public virtual long Id { get; set; }
         public virtual string Nome { get; set; } // Ex: "Ala Norte", "Ala Pediatria"
         public virtual IList<Quarto> Quartos { get; set; } = new List<Quarto>();
-        public virtual Hospital Hospital { get; set; }
+        [Required]
+        public virtual HospitalUnidade Hospital { get; set; }
     }
 }

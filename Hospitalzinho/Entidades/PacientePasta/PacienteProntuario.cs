@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,9 @@ namespace Hospitalzinho.Entidades.PacientePasta
     public class PacienteProntuario
     {
         public virtual long Id { get; set; }
+        [Required]
         public virtual Paciente Paciente { get; set; }
+        [Required]
         public virtual TipoSanguineo TipoSangue { get; set; }
         public virtual IList<Alergia> Alergias { get; set; } = new List<Alergia>();
         public virtual IList<PacienteDoencaCronica> DoencasCronicas { get; set; } = new List<PacienteDoencaCronica>();

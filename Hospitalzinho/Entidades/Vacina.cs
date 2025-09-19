@@ -1,5 +1,6 @@
 ﻿using Hospitalzinho.Entidades.EspecificaçõesHospital;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades
 {
@@ -10,8 +11,9 @@ namespace Hospitalzinho.Entidades
         public virtual DateTime DataProducao { get; set; }
         public virtual DateTime DataValidade { get; set; }
         public virtual int QuantidadeDisponivel { get; set; } // Quantidade disponível no estoque
-        public virtual int VacinaModeloId { get; set; } // FK para o modelo da vacina
+        [Required]
         public virtual VacinaModelo VacinaModelo { get; set; } // Referência ao modelo
-        public virtual Hospital Hospital { get; set; }
+        [Required]
+        public virtual HospitalUnidade Hospital { get; set; }
     }
 }
