@@ -25,6 +25,10 @@
                 </li>
 
                 <li>
+                    <a asp-controller="Paciente" asp-action="Consulta" class="@(currentController == "Paciente" && currentAction == "Consulta" ? "active" : "")">Consultar Paciente</a>
+                </li>
+
+                <li>
                     <a asp-controller="Paciente" asp-action="Cadastro" class="@(currentController == "Paciente" && currentAction == "Cadastro" ? "active" : "")">Cadastrar Paciente</a>
                 </li>
             </ul>

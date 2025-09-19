@@ -8,5 +8,10 @@ namespace HospitalzinhoMVC.Controllers
         {
             return View();
         }
+
+        public IActionResult Consulta()
+        {
+            return View();
+        }
     }
 }
