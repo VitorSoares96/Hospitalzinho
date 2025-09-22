@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades.PacientePasta">
+
+	<class name="PacienteContato" table="paciente_contato" lazy="false">
+
+		<!-- ID com sequence -->
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_paciente_contato</param>
+			</generator>
+		</id>
+
+		<!-- Relacionamento obrigatório com Paciente -->
+		<many-to-one name="Paciente" class="Paciente" column="paciente_id" not-null="true" />
+
+		<!-- Colunas simples -->
+		<property name="TelefoneResidencial" column="telefone_residencial" />
+		<property name="TelefoneCelular" column="telefone_celular" />
+		<property name="Email" column="email" />
+
+	</class>
+</hibernate-mapping>

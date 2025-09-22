@@ -1,47 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.PacientePasta">
-    <class name="Paciente" table="paciente">
 
-        <!-- ID com sequence -->
-        <id name="Id" column="id" type="Int64">
-            <generator class="sequence">
-                <param name="sequence">paciente_seq</param>
-            </generator>
-        </id>
+	<class name="Paciente" table="paciente" lazy="false">
 
-        <!-- Colunas simples -->
-        <property name="Nome" column="nome" not-null="true" />
-        <property name="CNS" column="cns" not-null="true" />
-        <property name="Cpf" column="cpf" not-null="true" />
-        <property name="DataNascimento" column="data_nascimento" not-null="true" />
-        <property name="NomePai" column="nome_pai" />
-        <property name="NomeMae" column="nome_mae" />
-        <property name="CpfPai" column="cpf_pai" />
-        <property name="CpfMae" column="cpf_mae" />
-        <property name="Atividade" column="atividade" not-null="true" />
-        <property name="Sexo" column="sexo" type="Hospitalzinho.Enum.SexoPaciente" not-null="true" />
-        <property name="Nacionalidade" column="nacionalidade" />
-        <property name="Raca" column="raca" type="Hospitalzinho.Enum.RacaPaciente" not-null="true" />
-        <property name="Naturalidade" column="naturalidade" />
-        <property name="Escolaridade" column="escolaridade" type="Hospitalzinho.Enum.EscolaridadePaciente" not-null="true" />
-        <property name="DataCadastro" column="data_cadastro" not-null="true" />
-        <property name="DataAtualizacao" column="data_atualizacao" not-null="true" />
-        <!-- Relacionamento com Convenio -->
-        <many-to-one name="ConvenioId" class="Convenio" column="convenio_id" cascade="none" />
+		<!-- ID com sequence -->
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_paciente</param>
+			</generator>
+		</id>
 
-        <!-- Relacionamento 1:1 com PacienteProntuario -->
-        <one-to-one name="Prontuario" class="PacienteProntuario" property-ref="Paciente" cascade="all" />
+		<!-- Colunas simples -->
+		<property name="Nome" column="nome" not-null="true" />
+		<property name="CNS" column="cns" not-null="true" />
+		<property name="Cpf" column="cpf" />
+		<property name="DataNascimento" column="data_nascimento" />
+		<property name="NomePai" column="nome_pai" />
+		<property name="NomeMae" column="nome_mae" />
+		<property name="CpfPai" column="cpf_pai" />
+		<property name="CpfMae" column="cpf_mae" />
+		<property name="Ativo" column="ativo" not-null="true" />
+		<property name="Sexo" column="sexo" type="int" not-null="true" />
+		<property name="Nacionalidade" column="nacionalidade" />
+		<property name="Raca" column="raca" type="int" not-null="true" />
+		<property name="Naturalidade" column="naturalidade" />
+		<property name="Escolaridade" column="escolaridade" type="int" not-null="true" />
+		<property name="DataCadastro" column="data_cadastro" not-null="true" />
+		<property name="DataAtualizacao" column="data_atualizacao" not-null="true" />
 
-        <!-- Relacionamentos 1:N -->
-        <bag name="Contatos" cascade="all-delete-orphan" inverse="true">
-            <key column="paciente_id"/>
-            <one-to-many class="PacienteContato"/>
-        </bag>
+		<!-- Relacionamento 1:1 com Prontuário -->
+		<one-to-one name="Prontuario" class="PacienteProntuario" property-ref="Paciente" cascade="all" />
 
-        <bag name="Enderecos" cascade="all-delete-orphan" inverse="true">
-            <key column="paciente_id"/>
-            <one-to-many class="PacienteEndereco"/>
-        </bag>
+		<!-- Relacionamentos 1:N -->
+		<bag name="Contatos" cascade="all-delete-orphan" inverse="true">
+			<key column="paciente_id"/>
+			<one-to-many class="PacienteContato"/>
+		</bag>
 
-    </class>
+		<bag name="Enderecos" cascade="all-delete-orphan" inverse="true">
+			<key column="paciente_id"/>
+			<one-to-many class="PacienteEndereco"/>
+		</bag>
+
+		<bag name="Convenios" cascade="all-delete-orphan" inverse="true">
+			<key column="paciente_id"/>
+			<one-to-many class="PacienteConvenio"/>
+		</bag>
+
+	</class>
 </hibernate-mapping>

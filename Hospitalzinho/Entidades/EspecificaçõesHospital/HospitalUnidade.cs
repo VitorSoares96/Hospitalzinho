@@ -14,8 +14,8 @@ namespace Hospitalzinho.Entidades.EspecificaçõesHospital
         public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; }
-        public TipoUnidade TipoUnidade { get; set; }
-        public HospitalEndereco Endereco { get; set; }
+        public virtual TipoUnidade TipoUnidade { get; set; }
+        public virtual HospitalEndereco Endereco { get; set; }
         
         public virtual List<Ala> Alas { get; set; } = new();
         public virtual List<ProfissionalSaude> ProfissionaisSaude { get; set; } = new();

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.EspecificaçõesHospital">
+	<class name="ProfissionalSaude" table="profissional_saude" lazy="false">
+		<id name="Id" column="id" type="Int64">
+			<generator class="sequence">
+				<param name="sequence">seq_profissional</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" not-null="true"/>
+		<property name="RegistroProfissional" column="registro_profissional" not-null="true"/>
+
+		<many-to-one name="Especialidade" column="especialidade_id" class="Especialidade" not-null="true"/>
+		<many-to-one name="Hospital" column="hospital_unidade_id" class="HospitalUnidade" not-null="true"/>
+
+		<bag name="Consultas" inverse="true" cascade="none">
+			<key column="hospital_unidade_id"/>
+			<one-to-many class="PacienteConsulta"/>
+		</bag>
+
+		<bag name="ExamesSolicitados" inverse="true" cascade="none">
+			<key column="profissional_id"/>
+			<one-to-many class="Exame"/>
+		</bag>
+
+		<bag name="Internacoes" inverse="true" cascade="none">
+			<key column="profissional_responsavel_id"/>
+			<one-to-many class="PacienteInternacao"/>
+		</bag>
+
+		<bag name="VacinacoesAdministradas" inverse="true" cascade="none">
+			<key column="profissional_responsavel_id"/>
+			<one-to-many class="PacienteVacinacao"/>
+		</bag>
+
+		<bag name="ReceitasPrescritas" inverse="true" cascade="none">
+			<key column="profissional_id"/>
+			<one-to-many class="Receita"/>
+		</bag>
+	</class>
+</hibernate-mapping>

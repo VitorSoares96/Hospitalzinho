@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.PacientePasta">
-	<class name="PacienteProntuario" table="paciente_prontuario">
+
+	<class name="PacienteProntuario" table="paciente_prontuario" lazy="false">
 
 		<!-- ID com sequence -->
-		<id name="Id" column="id" type="Int64">
+		<id name="Id" column="id" type="long">
 			<generator class="sequence">
-				<param name="sequence">paciente_prontuario_seq</param>
+				<param name="sequence">seq_prontuario</param>
 			</generator>
 		</id>
 
-		<!-- Relacionamento 1:1 com Paciente -->
-		<one-to-one name="Paciente" class="Paciente" property-ref="Prontuario" cascade="none" />
+		<!-- Relacionamento com Paciente -->
+		<many-to-one name="Paciente" class="Paciente" column="paciente_id" unique="true" not-null="true" />
 
 		<!-- Colunas simples -->
-		<property name="TipoSangue" column="tipo_sangue" type="Hospitalzinho.Enum.TipoSanguineo" not-null="true" />
+		<property name="TipoSangue" column="tipo_sangue" type="int" not-null="true" />
 		<property name="DataAbertura" column="data_abertura" not-null="true" />
 		<property name="UltimaAtualizacao" column="ultima_atualizacao" not-null="true" />
 
@@ -44,12 +45,12 @@
 		</bag>
 
 		<bag name="Consultas" cascade="all-delete-orphan" inverse="true">
-			<key column="paciente_id"/>
+			<key column="prontuario_id"/>
 			<one-to-many class="PacienteConsulta"/>
 		</bag>
 
 		<bag name="Internacoes" cascade="all-delete-orphan" inverse="true">
-			<key column="paciente_id"/>
+			<key column="prontuario_id"/>
 			<one-to-many class="PacienteInternacao"/>
 		</bag>
 

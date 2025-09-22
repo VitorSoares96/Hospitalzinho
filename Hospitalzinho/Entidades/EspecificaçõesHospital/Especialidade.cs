@@ -4,7 +4,7 @@ namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
     public class Especialidade
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; } = null!;
 

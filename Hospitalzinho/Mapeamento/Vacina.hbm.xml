@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades">
+
+	<class name="Vacina" table="vacina" lazy="false">
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_vacina</param>
+			</generator>
+		</id>
+
+		<property name="Lote" column="lote" type="string" />
+		<property name="DataProducao" column="data_producao" type="DateTime" />
+		<property name="DataValidade" column="data_validade" type="DateTime" />
+		<property name="QuantidadeDisponivel" column="quantidade_disponivel" type="int" />
+
+		<many-to-one name="VacinaModelo" class="VacinaModelo" column="vacina_modelo_id" not-null="true" />
+		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />
+	</class>
+</hibernate-mapping>

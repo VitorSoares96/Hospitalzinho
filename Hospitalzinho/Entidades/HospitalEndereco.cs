@@ -10,12 +10,12 @@ namespace Hospitalzinho.Entidades
 {
     public class HospitalEndereco
     {
-        public long Id { get; set; }
-        public string CEP { get; set; }
-        public string Cidade { get; set; }
-        public string Bairro { get; set; }
-        public string Rua {  get; set; }
-        public string Numero { get; set; }
-        public string Complemento { get; set; }
+        public virtual long Id { get; set; }
+        public virtual long CEP { get; set; }
+        public virtual long Cidade { get; set; }
+        public virtual long Bairro { get; set; }
+        public virtual long Rua {  get; set; }
+        public virtual long Numero { get; set; }
+        public virtual long Complemento { get; set; }
     }
 }

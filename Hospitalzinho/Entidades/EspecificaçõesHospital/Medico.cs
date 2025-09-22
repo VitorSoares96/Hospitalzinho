@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital;
 public class ProfissionalSaude
 {
-    public virtual int Id { get; set; }
+    public virtual long Id { get; set; }
     public virtual string Nome { get; set; } = null!;
     [Required]
     public virtual string? RegistroProfissional { get; set; } // CRM, COREN etc.

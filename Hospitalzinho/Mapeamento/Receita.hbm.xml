@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.EspecificaçõesHospital">
+    <class name="Receita" table="receita" lazy="false">
+        <id name="Id" column="id" type="long">
+            <generator class="sequence">
+                <param name="sequence">seq_receita</param>
+            </generator>
+        </id>
+
+        <property name="Data" column="data" not-null="true" type="DateTime"/>
+
+        <many-to-one name="Paciente" column="paciente_id" class="Paciente" not-null="true"/>
+        <many-to-one name="Profissional" column="profissional_id" class="ProfissionalSaude" not-null="true"/>
+        <many-to-one name="Hospital" column="hospital_unidade_id" class="HospitalUnidade" not-null="false"/>
+
+        <bag name="Itens" inverse="true" cascade="all-delete-orphan">
+            <key column="receita_id"/>
+            <one-to-many class="ItemReceita"/>
+        </bag>
+    </class>
+</hibernate-mapping>

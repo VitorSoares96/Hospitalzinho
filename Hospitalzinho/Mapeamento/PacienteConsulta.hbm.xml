@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades.PacientePasta">
+
+    <class name="PacienteConsulta" table="paciente_consulta" lazy="false">
+
+        <!-- ID com sequence -->
+        <id name="Id" column="id" type="long">
+            <generator class="sequence">
+                <param name="sequence">seq_consulta</param>
+            </generator>
+        </id>
+
+        <!-- FK para Prontuário -->
+        <many-to-one name="Prontuario" class="PacienteProntuario" column="prontuario_id" not-null="true" />
+
+        <!-- Colunas simples -->
+        <property name="DataConsulta" column="data_consulta" not-null="true" />
+        <property name="Observacoes" column="observacoes" />
+
+        <!-- Relacionamentos obrigatórios -->
+        <many-to-one name="ProfResponsavel" class="ProfissionalSaude" column="profissional_responsavel_id" not-null="true" />
+        <many-to-one name="Sala" class="Sala" column="sala_id" not-null="true" />
+
+        <!-- Relacionamento opcional -->
+        <many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" />
+
+        <!-- Relacionamento 1:N com exames -->
+        <bag name="Exames" cascade="all-delete-orphan" inverse="true">
+            <key column="consulta_id"/>
+            <one-to-many class="PacienteExame"/>
+        </bag>
+
+    </class>
+</hibernate-mapping>

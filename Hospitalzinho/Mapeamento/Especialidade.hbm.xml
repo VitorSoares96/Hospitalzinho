@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.EspecificaçõesHospital">
+	<class name="Especialidade" table="especialidade" lazy="false">
+		<id name="Id" column="id" type="Int64">
+			<generator class="sequence">
+				<param name="sequence">seq_especialidade</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" not-null="true"/>
+
+		<bag name="Profissionais" inverse="true" cascade="all-delete-orphan">
+			<key column="especialidade_id"/>
+			<one-to-many class="ProfissionalSaude"/>
+		</bag>
+	</class>
+</hibernate-mapping>

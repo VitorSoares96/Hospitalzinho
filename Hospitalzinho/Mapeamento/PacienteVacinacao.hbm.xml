@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades.PacientePasta">
+
+	<class name="PacienteVacinacao" table="paciente_vacinacao" lazy="false">
+
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_paciente_vacinacao</param>
+			</generator>
+		</id>
+
+		<many-to-one name="Prontuario" class="PacienteProntuario" column="prontuario_id" not-null="true" />
+		<many-to-one name="Vacina" class="Vacina" column="vacina_id" not-null="true" />
+		<many-to-one name="ProfResponsavel" class="ProfissionalSaude" column="profissional_responsavel_id" not-null="true" />
+		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />
+
+		<property name="DataAplicacao" column="data_aplicacao" type="datetime" />
+		<property name="DoseNumero" column="dose_numero" type="int" />
+		<property name="Observacoes" column="observacoes" type="string" />
+
+	</class>
+</hibernate-mapping>

@@ -6,15 +6,15 @@ namespace Hospitalzinho.Entidades
 {
     public class VacinaModelo
     {
-        public int Id { get; set; } // Identificador único do modelo
+        public virtual long Id { get; set; } // Identificador único do modelo
         [Required]
-        public string Nome { get; set; } // Nome da vacina, ex: "Covid-19 Pfizer"
-        public string Fabricante { get; set; } // Ex: "Pfizer"
-        public string Tipo { get; set; } // Ex: "RNA mensageiro", "Inativada"
-        public string Indicacao { get; set; } // Quem deve tomar
-        public int NumeroDoses { get; set; } // Total de doses previstas
-        public TimeSpan IntervaloEntreDoses { get; set; } // Intervalo sugerido entre doses
+        public virtual string Nome { get; set; } // Nome da vacina, ex: "Covid-19 Pfizer"
+        public virtual long Fabricante { get; set; } // Ex: "Pfizer"
+        public virtual long Tipo { get; set; } // Ex: "RNA mensageiro", "Inativada"
+        public virtual long Indicacao { get; set; } // Quem deve tomar
+        public virtual long NumeroDoses { get; set; } // Total de doses previstas
+        public virtual TimeSpan IntervaloEntreDoses { get; set; } // Intervalo sugerido entre doses
 
-        public List<Vacina> Vacinas { get; set; } = new List<Vacina>(); // Vacinas físicas produzidas a partir desse modelo
+        public virtual List<Vacina> Vacinas { get; set; } = new List<Vacina>(); // Vacinas físicas produzidas a partir desse modelo
     }
 }

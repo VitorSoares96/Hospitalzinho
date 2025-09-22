@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades">
+	<class name="Convenio" table="convenio" lazy="false">
+		<id name="Id" column="id" type="Int64">
+			<generator class="sequence">
+				<param name="sequence">seq_convenio</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" not-null="true" />
+		<property name="CNPJ" column="cnpj" />
+
+		<bag name="PacienteConvenios" inverse="true" cascade="all-delete-orphan">
+			<key column="convenio_id"/>
+			<one-to-many class="PacienteConvenio"/>
+		</bag>
+
+		<bag name="HospitaisAtentidos" table="hospital_unidade_convenio" cascade="none" inverse="false">
+			<key column="convenio_id"/>
+			<many-to-many class="HospitalUnidade" column="hospital_unidade_id"/>
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades.PacientePasta">
+
+	<class name="PacienteInternacao" table="paciente_internacao" lazy="false">
+
+		<!-- ID com sequence -->
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_internacao</param>
+			</generator>
+		</id>
+
+		<!-- Relacionamentos obrigatórios -->
+		<many-to-one name="Prontuario" class="PacienteProntuario" column="prontuario_id" not-null="true" />
+		<many-to-one name="Quarto" class="Quarto" column="quarto_id" not-null="true" />
+		<many-to-one name="ProfResponsavel" class="ProfissionalSaude" column="profissional_responsavel_id" not-null="true" />
+		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />
+
+		<!-- Propriedades -->
+		<property name="DataInternacao" column="data_internacao" type="datetime" />
+		<property name="DataAlta" column="data_alta" type="datetime" not-null="false" />
+		<property name="Motivo" column="motivo" type="string" />
+		<property name="Observacoes" column="observacoes" type="string" />
+
+	</class>
+</hibernate-mapping>

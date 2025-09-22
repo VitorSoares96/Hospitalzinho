@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades">
+
+	<class name="Ala" table="ala" lazy="false">
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_ala</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" type="string" />
+
+		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />
+
+		<bag name="Quartos" inverse="true" cascade="all-delete-orphan">
+			<key column="ala_id"/>
+			<one-to-many class="Quarto"/>
+		</bag>
+	</class>
+</hibernate-mapping>

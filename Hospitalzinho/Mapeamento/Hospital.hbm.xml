@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Hospitalzinho" namespace="Hospitalzinho.Entidades.EspecificaçõesHospital">
+	<class name="Hospital" table="hospital" lazy="false">
+		<id name="Id" column="id" type="Int64">
+			<generator class="sequence">
+				<param name="sequence">seq_hospital</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" not-null="true"/>
+		<property name="CNES" column="cnes" not-null="true"/>
+		<property name="CNPJ" column="cnpj" not-null="true"/>
+		<property name="TokenAcesso" column="token_acesso" not-null="true"/>
+
+		<bag name="Unidades" inverse="true" cascade="all-delete-orphan">
+			<key column="instituicao_pai_id"/>
+			<one-to-many class="HospitalUnidade"/>
+		</bag>
+	</class>
+</hibernate-mapping>

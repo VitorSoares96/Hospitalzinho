@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Hospitalzinho"
+                   namespace="Hospitalzinho.Entidades">
+
+	<class name="Exame" table="exame_tipo" lazy="false">
+		<id name="Id" column="id" type="long">
+			<generator class="sequence">
+				<param name="sequence">seq_exame_tipo</param>
+			</generator>
+		</id>
+
+		<property name="Nome" column="nome" type="string" not-null="true" />
+		<property name="Descricao" column="descricao" type="string" />
+
+		<bag name="Exames" inverse="true" cascade="all-delete-orphan">
+			<key column="tipo_exame_id"/>
+			<one-to-many class="PacienteExame"/>
+		</bag>
+	</class>
+</hibernate-mapping>
