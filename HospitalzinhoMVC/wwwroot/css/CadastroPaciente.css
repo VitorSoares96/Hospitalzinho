@@ -79,7 +79,7 @@ h1 {
     }
 
 /* Cards de Informações do Prontuário */
-#resultados-prontuario {
+.resultados-prontuario {
     display: flex;
     flex-direction: column;
     gap: 2rem;
