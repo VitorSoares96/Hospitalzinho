@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
-    public class Especialidade
+    public class Especialidade : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; } = null!;
 

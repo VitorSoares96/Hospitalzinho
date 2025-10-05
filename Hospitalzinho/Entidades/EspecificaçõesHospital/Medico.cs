@@ -1,10 +1,10 @@
 ﻿using Hospitalzinho.Entidades.PacientePasta;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital;
-public class ProfissionalSaude
+public class ProfissionalSaude : EntidadeBase
 {
-    public virtual long Id { get; set; }
     public virtual string Nome { get; set; } = null!;
     [Required]
     public virtual string? RegistroProfissional { get; set; } // CRM, COREN etc.

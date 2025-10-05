@@ -9,6 +9,8 @@
 
 		<property name="Nome" column="nome" not-null="true"/>
 		<property name="RegistroProfissional" column="registro_profissional" not-null="true"/>
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Especialidade" column="especialidade_id" class="Especialidade" not-null="true"/>
 		<many-to-one name="Hospital" column="hospital_unidade_id" class="HospitalUnidade" not-null="true"/>

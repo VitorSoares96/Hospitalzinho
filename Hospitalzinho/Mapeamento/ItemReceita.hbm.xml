@@ -9,6 +9,8 @@
 
 		<property name="Quantidade" column="quantidade" type="Int32"/>
 		<property name="Posologia" column="posologia" type="String"/>
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Receita" column="receita_id" class="Receita" not-null="true"/>
 		<many-to-one name="Modelo" column="medicamento_modelo_id" class="MedicamentoModelo" not-null="false"/>

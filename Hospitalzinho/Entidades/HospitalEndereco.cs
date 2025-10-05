@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades
 {
-    public class HospitalEndereco
+    public class HospitalEndereco : EntidadeBase
     {
-        public virtual long Id { get; set; }
         public virtual long CEP { get; set; }
         public virtual long Cidade { get; set; }
         public virtual long Bairro { get; set; }

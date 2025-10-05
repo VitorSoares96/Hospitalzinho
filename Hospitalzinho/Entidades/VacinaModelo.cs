@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades
 {
-    public class VacinaModelo
+    public class VacinaModelo : EntidadeBase
     {
-        public virtual long Id { get; set; } // Identificador único do modelo
         [Required]
         public virtual string Nome { get; set; } // Nome da vacina, ex: "Covid-19 Pfizer"
         public virtual long Fabricante { get; set; } // Ex: "Pfizer"

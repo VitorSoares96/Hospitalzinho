@@ -14,6 +14,8 @@
 		<property name="DataProducao" column="data_producao" type="DateTime" />
 		<property name="DataValidade" column="data_validade" type="DateTime" />
 		<property name="QuantidadeDisponivel" column="quantidade_disponivel" type="int" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="VacinaModelo" class="VacinaModelo" column="vacina_modelo_id" not-null="true" />
 		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />

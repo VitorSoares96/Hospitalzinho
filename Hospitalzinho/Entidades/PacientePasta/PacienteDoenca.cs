@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.PacientePasta
 {
-    public class PacienteDoencaCronica
+    public class PacienteDoencaCronica : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual PacienteProntuario Prontuario { get; set; }
         [Required]

@@ -13,6 +13,8 @@
 		<property name="Nome" column="nome" type="string" />
 		<property name="Cid" column="cid" type="string" not-null="true" />
 		<property name="Descricao" column="descricao" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<bag name="Pacientes" inverse="true" cascade="all-delete-orphan">
 			<key column="doenca_modelo_id"/>

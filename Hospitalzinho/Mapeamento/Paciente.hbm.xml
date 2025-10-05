@@ -25,8 +25,8 @@
 		<property name="Raca" column="raca" type="int" not-null="true" />
 		<property name="Naturalidade" column="naturalidade" />
 		<property name="Escolaridade" column="escolaridade" type="int" not-null="true" />
-		<property name="DataCadastro" column="data_cadastro" not-null="true" />
-		<property name="DataAtualizacao" column="data_atualizacao" not-null="true" />
+	<property name="CriadoEm" column="data_cadastro" not-null="true" />
+	<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<!-- Relacionamento 1:1 com Prontuário -->
 		<one-to-one name="Prontuario" class="PacienteProntuario" property-ref="Paciente" cascade="all" />

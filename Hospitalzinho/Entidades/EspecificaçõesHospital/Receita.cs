@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
-    public class Receita
+    public class Receita : EntidadeBase
     {
-        public virtual long Id { get; set; }
         public virtual DateTime Data { get; set; }
 
         // FK - Paciente e Profissional que prescreveu

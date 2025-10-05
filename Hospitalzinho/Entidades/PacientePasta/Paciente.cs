@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Hospitalzinho.Enum;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.PacientePasta
 {
-    public class Paciente
+    public class Paciente : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; }
         [Required]

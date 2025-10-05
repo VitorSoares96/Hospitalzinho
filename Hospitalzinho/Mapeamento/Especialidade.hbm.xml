@@ -8,6 +8,8 @@
 		</id>
 
 		<property name="Nome" column="nome" not-null="true"/>
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<bag name="Profissionais" inverse="true" cascade="all-delete-orphan">
 			<key column="especialidade_id"/>

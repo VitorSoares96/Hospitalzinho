@@ -18,6 +18,8 @@
         <!-- Colunas simples -->
         <property name="DataConsulta" column="data_consulta" not-null="true" />
         <property name="Observacoes" column="observacoes" />
+        <property name="CriadoEm" column="data_cadastro" not-null="true" />
+        <property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
         <!-- Relacionamentos obrigatórios -->
         <many-to-one name="ProfResponsavel" class="ProfissionalSaude" column="profissional_responsavel_id" not-null="true" />

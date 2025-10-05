@@ -2,11 +2,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.Medicacao
 {
-    public class Medicamento
+    public class Medicamento : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual MedicamentoModelo Modelo { get; set; }
         public virtual string Lote { get; set; }

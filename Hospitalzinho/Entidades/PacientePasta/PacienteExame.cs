@@ -2,11 +2,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.PacientePasta
 {
-    public class PacienteExame
+    public class PacienteExame : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual PacienteProntuario Prontuario { get; set; }
         public virtual DateTime DataExame { get; set; }

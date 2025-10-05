@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.PacientePasta
 {
-    public class PacienteProntuario
+    public class PacienteProntuario : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual Paciente Paciente { get; set; }
         [Required]

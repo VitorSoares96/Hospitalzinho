@@ -12,6 +12,8 @@
 
 		<property name="Numero" column="numero" type="string" />
 		<property name="Tipo" column="tipo" type="int" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Ala" class="Ala" column="ala_id" not-null="true" />
 

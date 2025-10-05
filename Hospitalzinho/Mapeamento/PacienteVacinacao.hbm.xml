@@ -19,6 +19,8 @@
 		<property name="DataAplicacao" column="data_aplicacao" type="datetime" />
 		<property name="DoseNumero" column="dose_numero" type="int" />
 		<property name="Observacoes" column="observacoes" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

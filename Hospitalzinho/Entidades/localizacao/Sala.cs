@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades
 {
-    public class Sala
+    public class Sala : EntidadeBase
     {
-        public virtual long Id { get; set; }
         public virtual string Numero { get; set; } // Ex: "Consultório 12", "Sala 305"
         [Required]
         public virtual Ala Ala { get; set; } // Ala/setor da sala

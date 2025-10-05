@@ -12,6 +12,8 @@
 
 		<property name="Nome" column="nome" type="string" not-null="true" />
 		<property name="Descricao" column="descricao" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<bag name="Exames" inverse="true" cascade="all-delete-orphan">
 			<key column="tipo_exame_id"/>

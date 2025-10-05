@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
-    public class HospitalUnidade
+    public class HospitalUnidade : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; }
         public virtual TipoUnidade TipoUnidade { get; set; }

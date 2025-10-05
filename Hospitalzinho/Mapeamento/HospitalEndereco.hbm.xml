@@ -16,5 +16,7 @@
 		<property name="Rua" column="rua" type="string" />
 		<property name="Numero" column="numero" type="string" />
 		<property name="Complemento" column="complemento" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 	</class>
 </hibernate-mapping>

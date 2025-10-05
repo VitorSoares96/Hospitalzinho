@@ -2,11 +2,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades
 {
-    public class Vacina
+    public class Vacina : EntidadeBase
     {
-        public virtual long Id { get; set; } // Identificador único do lote
         public virtual string Lote { get; set; } // Lote da vacina
         public virtual DateTime DataProducao { get; set; }
         public virtual DateTime DataValidade { get; set; }

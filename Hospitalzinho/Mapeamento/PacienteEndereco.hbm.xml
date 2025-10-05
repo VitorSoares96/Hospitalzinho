@@ -23,6 +23,8 @@
 		<property name="Cidade" column="cidade" type="string" />
 		<property name="Estado" column="estado" type="string" />
 		<property name="Cep" column="cep" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

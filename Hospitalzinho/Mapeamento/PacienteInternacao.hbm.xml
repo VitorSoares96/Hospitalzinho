@@ -23,6 +23,8 @@
 		<property name="DataAlta" column="data_alta" type="datetime" not-null="false" />
 		<property name="Motivo" column="motivo" type="string" />
 		<property name="Observacoes" column="observacoes" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

@@ -2,9 +2,9 @@
 using Hospitalzinho.Entidades.PacientePasta;
 using System.ComponentModel.DataAnnotations;
 
-public class Convenio
+using FGB.Entidades;
+public class Convenio : EntidadeBase
 {
-    public virtual long Id { get; set; }
     public virtual string? CNPJ { get; set; }
     [Required]
     public virtual string Nome { get; set; } = null!;

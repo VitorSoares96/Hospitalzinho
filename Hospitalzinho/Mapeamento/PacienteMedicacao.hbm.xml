@@ -20,6 +20,8 @@
 		<property name="Observacoes" column="observacoes" type="string" />
 		<property name="DataInicio" column="data_inicio" type="datetime" />
 		<property name="DataFim" column="data_fim" type="datetime" not-null="false" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

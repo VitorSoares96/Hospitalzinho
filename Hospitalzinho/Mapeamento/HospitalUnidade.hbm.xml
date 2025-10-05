@@ -9,6 +9,8 @@
 
 		<property name="Nome" column="nome" not-null="true"/>
 		<property name="TipoUnidade" column="tipo_unidade" type="Int32"/>
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Endereco" column="endereco_id" class="HospitalEndereco" cascade="none" not-null="false"/>
 		<many-to-one name="InstituicaoPai" column="instituicao_pai_id" class="Hospital" not-null="true"/>

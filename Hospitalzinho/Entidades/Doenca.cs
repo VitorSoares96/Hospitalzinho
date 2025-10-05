@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FGB.Entidades;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospitalzinho.Entidades
 {
-    public class DoencaCronicaModelo
+    public class DoencaCronicaModelo : EntidadeBase
     {
-        public virtual long Id { get; set; }
         public virtual string Nome { get; set; } // Ex: "Hipertensão Arterial"
         [Required]
         public virtual string Cid { get; set; } // Código CID-10

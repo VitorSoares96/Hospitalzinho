@@ -1,9 +1,9 @@
 ﻿using Hospitalzinho.Entidades.PacientePasta;
 using System.ComponentModel.DataAnnotations;
 
-public class PacienteConvenio
+using FGB.Entidades;
+public class PacienteConvenio : EntidadeBase
 {
-    public virtual long Id { get; set; }
     [Required]
     public virtual Paciente Paciente { get; set; }
     [Required]

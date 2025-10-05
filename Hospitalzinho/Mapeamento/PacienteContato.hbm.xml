@@ -19,6 +19,8 @@
 		<property name="TelefoneResidencial" column="telefone_residencial" />
 		<property name="TelefoneCelular" column="telefone_celular" />
 		<property name="Email" column="email" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

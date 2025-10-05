@@ -21,6 +21,8 @@
 		<property name="Estagio" column="estagio" type="string" />
 		<property name="Observacoes" column="observacoes" type="string" />
 		<property name="EmTratamento" column="em_tratamento" type="bool" not-null="true" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 	</class>
 </hibernate-mapping>

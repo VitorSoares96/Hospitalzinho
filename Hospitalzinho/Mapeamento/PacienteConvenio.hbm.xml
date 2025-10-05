@@ -20,6 +20,8 @@
 		<property name="NumeroCarteirinha" column="numero_carteira" not-null="true" />
 		<property name="Validade" column="validade" type="DateTime" />
 		<property name="Ativo" column="ativo" not-null="true" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<!-- Restrições únicas -->
 		<unique-key>

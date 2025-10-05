@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades
 {
-    public class Quarto
+    public class Quarto : EntidadeBase
     {
-        public virtual long Id { get; set; }
         public virtual string Numero { get; set; } // Ex: "101A"
         [Required]
         public virtual Ala Ala { get; set; } // Ala onde o quarto está localizado

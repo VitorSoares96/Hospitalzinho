@@ -12,6 +12,8 @@
 
 		<property name="Nome" column="nome" type="string" />
 		<property name="Tipo" column="tipo" type="int" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Prontuario" class="PacienteProntuario" column="prontuario_id" not-null="true" />
 	</class>

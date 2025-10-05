@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FGB.Entidades;
 namespace Hospitalzinho.Entidades.EspecificaçõesHospital
 {
-    public class Hospital
+    public class Hospital : EntidadeBase
     {
-        public virtual long Id { get; set; }
         [Required]
         public virtual string Nome { get; set; }
         [Required]

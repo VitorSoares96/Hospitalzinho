@@ -11,6 +11,8 @@
 		</id>
 
 		<property name="Nome" column="nome" type="string" />
+		<property name="CriadoEm" column="data_cadastro" not-null="true" />
+		<property name="UltimaAlteracao" column="data_atualizacao" not-null="true" />
 
 		<many-to-one name="Hospital" class="HospitalUnidade" column="hospital_unidade_id" not-null="true" />
 
